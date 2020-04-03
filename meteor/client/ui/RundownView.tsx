@@ -19,7 +19,7 @@ import { RundownPlaylist, RundownPlaylists, RundownPlaylistId } from '../../lib/
 import { Rundown, Rundowns, RundownHoldState, RundownId } from '../../lib/collections/Rundowns'
 import { Segment, SegmentId } from '../../lib/collections/Segments'
 import { Studio, Studios } from '../../lib/collections/Studios'
-import { Part, Parts } from '../../lib/collections/Parts'
+import { Part, Parts, PartId } from '../../lib/collections/Parts'
 
 import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu'
 
@@ -65,6 +65,7 @@ import { NoraPreviewRenderer } from './SegmentTimeline/Renderers/NoraPreviewRend
 import { OffsetPosition } from '../utils/positions'
 import { Settings } from '../../lib/Settings'
 import { MeteorCall } from '../../lib/api/methods'
+import { PartInstanceId } from '../../lib/collections/PartInstances'
 
 type WrappedShelf = ShelfBase & { getWrappedInstance (): ShelfBase }
 
@@ -1099,7 +1100,18 @@ interface IState {
 export enum RundownViewEvents {
 	'rewindsegments'	=	'sofie:rundownRewindSegments',
 	'goToLiveSegment'	=	'sofie:goToLiveSegment',
-	'goToTop'			=	'sofie:goToTop'
+	'goToTop'			=	'sofie:goToTop',
+	'goToPart'			=	'goToPart',
+	'goToPartInstance'			=	'goToPartInstance'
+}
+
+export interface IGoToPartEvent {
+	segmentId: SegmentId
+	partId: PartId
+}
+export interface IGoToPartInstanceEvent {
+	segmentId: SegmentId
+	partInstanceId: PartInstanceId
 }
 
 interface ITrackedProps {
